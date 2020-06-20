@@ -1,0 +1,17 @@
+﻿.print-only {
+    display: none;
+}
+
+#textInput:focus {
+    outline:none;
+}
+
+@media print {
+    .main-container {
+        display:none;
+    }
+
+    .print-only {
+        display: block;
+    }
+}
