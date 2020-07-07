@@ -1,59 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graph Paper</title>
 
-    <link href="content/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="content/site.css" rel="stylesheet" media="screen">
-
-
+    <link rel="stylesheet" href="assets/css/remedy.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<body>
 
-<body style="background:#ddd;">
+    <p>Click anywhere in the grid below and drag while holding the mouse button to draw a line.</p>
 
+    <main class="main">
+        <div class="top-bar">
+            <button class="undo" disabled>Undo</button>
+            <button class="redo" disabled>Redo</button>
+            <button class="erase-all" disabled>Erase Everything</button>
 
-
-    <link rel="stylesheet" type="text/css" href="content/virtual-graph-paper.css" />
-
-    <div class="row-fluid" style="margin-bottom:2em;">
-        <div class="span10 offset1">
-            <p class="lead">
-                <strong>Welcome to the virtual online graph paper.</strong>
-                Here you can easily draw lines, text, and print your graph paper.
-            </p>
-            <ul>
-                <li><strong>To draw lines</strong> just click anywhere in the grid below and drag while holding the mouse button.</li>
-                <li><strong>To write text</strong> instead just click anywhere and start typing.</li>
-            </ul>
-
-
+            <span class="coordinates">(0, 0)</span>
+            <span class="line-length"></span>
         </div>
-    </div>
 
+        <canvas class="paper">JavaScript required.</canvas>
 
-    <div style="width:700px;margin:auto;">
-        <button id="undo" class="btn btn-primary"><i class="icon-share-alt icon-white" style="-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);-o-transform:rotateY(180deg);-ms-transform:rotateY(180deg);"></i> Undo</button>
-        <button id="print" class="btn btn-primary"><i class="icon-print icon-white"></i> Print</button>
-        <button id="eraseAll" class="btn btn-danger"><i class="icon-trash icon-white"></i> Erase Everything</button>
-        (go ahead click and draw below)
-    </div>
-    <div style="margin-top:10px;">
-        <canvas id="paper" width="700" height="900" style="border:2px solid #a7c4ce;margin:auto;display:block;"></canvas>
-        <div id="current_coordinates_container" style="width:700px;margin:auto;color:#aaa;font-size:.9em;visibility:hidden;">
-            Current coordindates: <span id="current_coordinates">(0, 0)</span>
-            <span id="line_length"></span>
-        </div>
-        <span id="measureTextInput" style="position:absolute;left:0;top:0;display:none;"></span>
-        <input id="textInput" style="position:absolute; display:none; background:transparent; border:none; margin:0; width:0; padding:0;line-height:0;">
-    </div>
+        <ol class="stack"></ol>
+    </main>
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-    <script src="content/virtual-graph-paper.min.js"></script>
-
-
-
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
