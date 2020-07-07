@@ -7,7 +7,7 @@ const $coordinates = document.querySelector('.coordinates');
 const $stack = document.querySelector('.stack');
 
 const WIDTH = 700;
-const HEIGHT = 900;
+const HEIGHT = 700;
 const ctx = $canvas.getContext('2d');
 const LINE_WIDTH = 3;
 const BACKGROUND_COLOR = '#FFFFFF';
