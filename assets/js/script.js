@@ -7,10 +7,9 @@ const $coordinates = document.querySelector('.coordinates');
 const $stack = document.querySelector('.stack');
 
 const WIDTH = 700;
-const HEIGHT = 900;
+const HEIGHT = 700;
 const ctx = $canvas.getContext('2d');
 const LINE_WIDTH = 3;
-const BACKGROUND_COLOR = '#FFFFFF';
 const GRID_MAJOR_LINE_COLOR = '#a7c4ce';
 const GRID_MINOR_LINE_COLOR = '#c1e2ed';
 const DRAW_LINE_COLOR = '#4521cb';
@@ -22,9 +21,9 @@ let stack = [];
 let instruction = stack.length;
 
 // Helpers
-const Point = function (x, y) {
-  return { x: x, y: y };
-};
+function Point(x, y) {
+  return { x, y };
+}
 
 function distance(line) {
   const a = line.start.y - line.end.y;
@@ -90,7 +89,7 @@ function undo() {
     return;
   }
 
-  instruction--;
+  instruction -= 1;
 
   if (instruction <= 0) {
     instruction = 0;
@@ -107,7 +106,7 @@ function redo() {
     return;
   }
 
-  instruction++;
+  instruction += 1;
 
   if (instruction >= stack.length) {
     instruction = stack.length;
@@ -146,12 +145,10 @@ function drawLine(line) {
 function drawGrid() {
   ctx.lineWidth = 1;
   ctx.lineCap = LINE_CAP;
-  //   ctx.fillStyle = BACKGROUND_COLOR;
-  //   ctx.fillRect(0, 0, $canvas.width, $canvas.height);
   ctx.clearRect(0, 0, $canvas.width, $canvas.height);
 
   // Draw y-grid
-  for (let yPos = 0, line = 0; yPos < $canvas.height; yPos += SIZE, line++) {
+  for (let yPos = 0, line = 0; yPos < $canvas.height; yPos += SIZE, line += 1) {
     if (line % 5 === 0) {
       ctx.strokeStyle = GRID_MAJOR_LINE_COLOR;
     } else {
@@ -166,7 +163,7 @@ function drawGrid() {
   }
 
   // Draw x-grid
-  for (let xPos = 0, line = 0; xPos < $canvas.width; xPos += SIZE, line++) {
+  for (let xPos = 0, line = 0; xPos < $canvas.width; xPos += SIZE, line += 1) {
     if (line % 5 === 0) {
       ctx.strokeStyle = GRID_MAJOR_LINE_COLOR;
     } else {
@@ -255,7 +252,7 @@ function onMouseUp() {
   currentLine.start = snapPoint(currentLine.start);
   currentLine.end = snapPoint(currentLine.end);
 
-  if (instruction != stack.length) {
+  if (instruction !== stack.length) {
     stack = stack.slice(0, instruction);
   }
 
