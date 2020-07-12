@@ -218,20 +218,24 @@ function erase() {
   checkUndoRedoButtons();
 }
 
-function undoButton(event) {
-  // ctrl + z or cmd + z
-  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'z') {
-    undo();
+function keydown(event) {
+
+  const isMeta = (event.metaKey || event.ctrlKey);
+  const key = event.key.toLowerCase();
+
+  // meta + shift + z or meta + y
+  if (isMeta && ((key === 'shift' && key === 'z') || key === 'y')) {
+    return redo();
+  }
+
+  // meta + z 
+  if (isMeta && key === 'z') {
+    return undo();
   }
   
-  // ctrl + shift + z or cmd + shift + z
-  if ((event.metaKey || event.ctrlKey) && ((event.key.toLowerCase() === 'shift' && event.key.toLowerCase() === 'z') || event.key.toLowerCase() === 'y')) {
-    redo();
-  }
-  
-  // ctrl + n or cmd + n
-  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') {
-    erase();
+  // meta + n
+  if (isMeta && key === 'n') {
+    return erase();
   }
 }
 
@@ -295,7 +299,7 @@ function onMouseMove(event) {
   render();
 }
 
-document.addEventListener('keydown', undoButton);
+document.addEventListener('keydown', keydown);
 $canvas.addEventListener('mousedown', onMouseDown);
 $canvas.addEventListener('mousemove', onMouseMove);
 $canvas.addEventListener('mouseup', onMouseUp);
