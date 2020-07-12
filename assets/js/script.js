@@ -219,9 +219,14 @@ function erase() {
 }
 
 function undoButton(event) {
-  // ctrl + z or cmd +z
+  // ctrl + z or cmd + z
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'z') {
     undo();
+  }
+  
+  // ctrl + n or cmd + n
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') {
+    erase();
   }
 }
 
