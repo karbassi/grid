@@ -224,6 +224,11 @@ function undoButton(event) {
     undo();
   }
   
+  // ctrl + shift + z or cmd + shift + z
+  if ((event.metaKey || event.ctrlKey) && ((event.key.toLowerCase() === 'shift' && event.key.toLowerCase() === 'z') || event.key.toLowerCase() === 'y')) {
+    redo();
+  }
+  
   // ctrl + n or cmd + n
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') {
     erase();
