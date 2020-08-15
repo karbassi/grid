@@ -2,6 +2,7 @@ const $canvas = document.querySelector('.paper');
 const $undoButton = document.querySelector('.undo');
 const $redoButton = document.querySelector('.redo');
 const $eraseButton = document.querySelector('.erase-all');
+const $coordButton = document.querySelector('.coord-toggle');
 const $lineLength = document.querySelector('.line-length');
 const $coordinates = document.querySelector('.coordinates');
 const $stack = document.querySelector('.stack');
@@ -206,6 +207,11 @@ function render() {
   $canvas.width = WIDTH;
   $canvas.height = HEIGHT;
 
+  if( 'true' === localStorage.getItem('coordinatePairsVisible' ) ) {
+    $stack.classList.add('is-visible');
+    $coordButton.innerText = 'Hide Coordinate Pairs';
+  }
+
   drawGrid();
   drawLines();
 }
@@ -216,6 +222,18 @@ function erase() {
   writeData();
   render();
   checkUndoRedoButtons();
+}
+
+function toggleCoordStack() {
+  $stack.classList.toggle('is-visible');
+
+  if( $stack.classList.contains('is-visible') ) {
+    $coordButton.innerText = 'Hide Coordinate Pairs';
+    localStorage.setItem('coordinatePairsVisible', 'true');
+  } else {
+    $coordButton.innerText = 'Show Coordinate Pairs';
+    localStorage.setItem('coordinatePairsVisible', 'false');
+  }
 }
 
 function undoButton(event) {
@@ -302,6 +320,7 @@ $canvas.addEventListener('mouseup', onMouseUp);
 $undoButton.addEventListener('click', undo);
 $redoButton.addEventListener('click', redo);
 $eraseButton.addEventListener('click', erase);
+$coordButton.addEventListener('click', toggleCoordStack);
 
 readData();
 render();
