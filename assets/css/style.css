@@ -45,7 +45,12 @@ body {
 }
 
 .stack {
+  display: none;
   list-style-type: upper-alpha;
+}
+
+.stack.is-visible {
+  display: block;
 }
 
 .start {
